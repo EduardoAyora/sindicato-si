@@ -67,7 +67,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Sindicato de Choferes Sta. Isabel</title>
         <meta
           name='description'
           content='Sindicato de choferes de Santa Isabel'
