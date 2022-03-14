@@ -80,7 +80,7 @@ export default function Home() {
           <nav className='container px-6 py-4 mx-auto md:flex md:justify-between md:items-center'>
             <div className='flex items-center justify-between'>
               <a
-                className='text-xl font-bold text-white transition-colors duration-300 transform md:text-2xl hover:text-indigo-400'
+                className='text-xl pr-6 font-bold text-white transition-colors duration-300 transform md:text-2xl hover:text-indigo-400'
                 href='#'
               >
                 Sindicato de choferes de Santa Isabel
@@ -138,7 +138,7 @@ export default function Home() {
             style={{ height: '500px' }}
           >
             <div className='text-center'>
-              <p className='text-xl font-medium tracking-wider text-gray-300'>
+              <p className='text-lg sm:text-xl font-medium tracking-wider text-gray-300'>
                 <a
                   target='_blank'
                   rel='noreferrer'
@@ -152,9 +152,9 @@ export default function Home() {
                 Santa Isabel
               </h2>
 
-              <div className='flex justify-center mt-8'>
+              <div className='p-2 sm:p-0 flex justify-center mt-8'>
                 <a
-                  className='px-8 mr-6 py-2 text-lg font-medium text-white transition-colors duration-300 transform bg-yellow-600 rounded hover:bg-yellow-500'
+                  className='px-6 sm:px-8 mr-2 sm:mr-6 py-2 text-lg font-medium text-white transition-colors duration-300 transform bg-yellow-600 rounded hover:bg-yellow-500'
                   href='https://sindicatodechoferesstaisabel.com/'
                   target='_blank'
                   rel='noreferrer'
@@ -162,7 +162,7 @@ export default function Home() {
                   Acceso a portal educativo
                 </a>
                 <a
-                  className='px-8 py-2 text-lg font-medium text-yellow-600 transition-colors duration-300 transform bg-white rounded hover:bg-gray-200'
+                  className='flex items-center px-6 sm:px-8 py-2 text-lg font-medium text-yellow-600 transition-colors duration-300 transform bg-white rounded hover:bg-gray-200'
                   href='#inscripciones'
                 >
                   Inscribirse
