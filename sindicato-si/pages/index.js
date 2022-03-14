@@ -63,33 +63,49 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <div style={styles}>
-        <label>
-          <input
-            accept='.pdf, .doc, .docx'
-            type='file'
-            multiple
-            onChange={onChange}
-          />
-          <div className='cursor-pointer w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
-            <CloudUploadIcon className='h-6 w-6 mr-2' aria-hidden='true' />{' '}
-            Cargar documentos
-          </div>
-        </label>
-        {files.map((file, indice) => (
-          <div key={indice} className='' onClick={() => removeFile(file)}>
-            {file.name}
-          </div>
-        ))}
-      </div>
+      <div>
+        <div className='mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md'>
+          <div className='space-y-1 text-center'>
+            <div className='flex justify-center text-sm text-gray-600'>
+              <label>
+                <input
+                  accept='.pdf, .doc, .docx'
+                  type='file'
+                  multiple
+                  onChange={onChange}
+                />
+                <div className='cursor-pointer w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+                  <CloudUploadIcon
+                    className='h-6 w-6 mr-2'
+                    aria-hidden='true'
+                  />{' '}
+                  Cargar documentos
+                </div>
+              </label>
+            </div>
+            <p className='text-xs text-gray-500'>PDF, DOC, DOCX</p>
 
-      <div className='mt-6 flex justify-center'>
-        <button
-          className='cursor-pointer w-36 bg-green-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
-          onClick={sendMail}
-        >
-          Enviar
-        </button>
+            <div style={styles}>
+              {files.map((file, indice) => (
+                <span
+                  onClick={() => removeFile(file)}
+                  key={indice}
+                  className='m-1 bg-gray-200 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer'
+                >
+                  {file.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className='mt-6 flex justify-center'>
+          <button
+            className='cursor-pointer w-36 bg-green-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+            onClick={sendMail}
+          >
+            Enviar
+          </button>
+        </div>
       </div>
     </div>
   )
