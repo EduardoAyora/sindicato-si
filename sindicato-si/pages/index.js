@@ -9,23 +9,12 @@ const styles = {
 }
 
 export default function Home() {
-  const [files, setFiles] = useState([])
+  const [cFiles, setCFiles] = useState([])
+  const [eFiles, setEFiles] = useState([])
   const [isOpen, setIsOpen] = useState(false)
-  const nameRef = useRef()
-  const idRef = useRef()
-  const emailRef = useRef()
 
-  function onChange(e) {
-    var files = e.target.files
-    var filesArr = Array.prototype.slice.call(files)
-    setFiles((prevFiles) => {
-      return [...prevFiles, ...filesArr]
-    })
-  }
-
-  function removeFile(f) {
-    setFiles(files.filter((x) => x !== f))
-  }
+  const cNameRef = useRef()
+  const cCelRef = useRef()
 
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -34,35 +23,6 @@ export default function Home() {
       reader.onload = () => resolve(reader.result)
       reader.onerror = (error) => reject(error)
     })
-
-  async function sendMail() {
-    const mappedPdfsToSend = []
-    for await (const file of files) {
-      const name = file.name
-      const data = await toBase64(file)
-      mappedPdfsToSend.push({
-        name,
-        data,
-      })
-    }
-
-    Email.send({
-      SecureToken: '9ad5ea20-233e-400d-835d-d5df0e7a8486',
-      To: 'eduardoaayora24@gmail.com',
-      From: 'eduardoaayora24@gmail.com',
-      Subject: 'SOLICITUD DE INSCRIPCIÓN',
-      Body: `Nombre: ${nameRef.current.value}, Cédula: ${idRef.current.value}, Email: ${emailRef.current.value}`,
-      Attachments: mappedPdfsToSend,
-    })
-      .then((message) => {
-        alert('Sus datos se han enviado con éxito: ' + message)
-        setFiles([])
-        nameRef.current.value = ''
-        idRef.current.value = ''
-        emailRef.current.value = ''
-      })
-      .catch((err) => alert('Ha ocurrido el error: ' + err))
-  }
 
   return (
     <div className={styles.container}>
@@ -224,13 +184,16 @@ export default function Home() {
                 <form action='#' method='POST'>
                   <div className='shadow overflow-hidden sm:rounded-md'>
                     <div className='px-4 py-5 bg-white sm:p-6'>
-                      <div className='grid grid-cols-6 gap-6'>
+                      <h2 className='text-2xl font-semibold text-gray-800'>
+                        Inscripciones para licencia tipo C
+                      </h2>
+                      <div className='grid grid-cols-6 gap-6 pt-4'>
                         <div className='col-span-6 sm:col-span-3'>
                           <label className='block text-sm font-medium text-gray-700'>
                             Nombre
                           </label>
                           <input
-                            ref={nameRef}
+                            ref={cNameRef}
                             type='text'
                             className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                           />
@@ -238,22 +201,10 @@ export default function Home() {
 
                         <div className='col-span-6 sm:col-span-3'>
                           <label className='block text-sm font-medium text-gray-700'>
-                            Cédula
+                            Celular
                           </label>
                           <input
-                            ref={idRef}
-                            type='text'
-                            autoComplete='family-name'
-                            className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
-                          />
-                        </div>
-
-                        <div className='col-span-6 sm:col-span-6'>
-                          <label className='block text-sm font-medium text-gray-700'>
-                            Email
-                          </label>
-                          <input
-                            ref={emailRef}
+                            ref={cCelRef}
                             type='text'
                             className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                           />
@@ -261,8 +212,22 @@ export default function Home() {
 
                         <div className='col-span-6 sm:col-span-6'>
                           <label className='block text-sm font-medium text-gray-700'>
-                            Subir cédula y certificado de votación en .pdf o
-                            .docx
+                            <p className='font-bold'>
+                              Subir los siguientes documentos:
+                            </p>
+                            <ul className='list-disc pl-4'>
+                              <li>
+                                Cédula de identidad, certificado de votación,
+                                carnet de tipo de sangre (Cruz Roja). (En .pdf
+                                .doc o .docx)
+                              </li>
+                              <li>
+                                Certificado de estudios, aprobado el primer año
+                                de bachillerato. (Sellado por el distrito de
+                                educación)
+                              </li>
+                              <li>Certificado de salud (Emitido por MSP)</li>
+                            </ul>
                           </label>
                           <div className='mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md'>
                             <div className='space-y-1 text-center'>
@@ -272,7 +237,14 @@ export default function Home() {
                                     accept='.pdf, .doc, .docx'
                                     type='file'
                                     multiple
-                                    onChange={onChange}
+                                    onChange={(e) => {
+                                      var files = e.target.files
+                                      var filesArr =
+                                        Array.prototype.slice.call(files)
+                                      setCFiles((prevFiles) => {
+                                        return [...prevFiles, ...filesArr]
+                                      })
+                                    }}
                                   />
                                   <div className='cursor-pointer w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
                                     <CloudUploadIcon
@@ -288,9 +260,13 @@ export default function Home() {
                               </p>
 
                               <div style={styles}>
-                                {files.map((file, indice) => (
+                                {cFiles.map((file, indice) => (
                                   <span
-                                    onClick={() => removeFile(file)}
+                                    onClick={() =>
+                                      setCFiles(
+                                        cFiles.filter((x) => x !== file)
+                                      )
+                                    }
                                     key={indice}
                                     className='m-1 bg-gray-200 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer'
                                   >
@@ -306,7 +282,44 @@ export default function Home() {
                     <div className='px-4 py-3 bg-gray-50 text-right sm:px-6'>
                       <button
                         type='button'
-                        onClick={sendMail}
+                        onClick={async () => {
+                          if (cNameRef.current.value === '')
+                            return alert('El nombre es requerido')
+                          if (cCelRef.current.value === '')
+                            return alert('El celular es requerido')
+                          if (cFiles.length === 0)
+                            return alert('Cargar los documentos es requerido')
+
+                          const mappedPdfsToSend = []
+                          for await (const file of cFiles) {
+                            const name = file.name
+                            const data = await toBase64(file)
+                            mappedPdfsToSend.push({
+                              name,
+                              data,
+                            })
+                          }
+
+                          Email.send({
+                            SecureToken: '9ad5ea20-233e-400d-835d-d5df0e7a8486',
+                            To: 'eduardoaayora24@gmail.com',
+                            From: 'eduardoaayora24@gmail.com',
+                            Subject: 'SOLICITUD DE INSCRIPCIÓN',
+                            Body: `Nombre: ${cNameRef.current.value}, Celular: ${cCelRef.current.value}`,
+                            Attachments: mappedPdfsToSend,
+                          })
+                            .then((message) => {
+                              alert(
+                                'Sus datos se han enviado con éxito: ' + message
+                              )
+                              setCFiles([])
+                              cNameRef.current.value = ''
+                              cCelRef.current.value = ''
+                            })
+                            .catch((err) =>
+                              alert('Ha ocurrido el error: ' + err)
+                            )
+                        }}
                         className='inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
                       >
                         Enviar
