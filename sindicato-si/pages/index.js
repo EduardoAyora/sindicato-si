@@ -223,17 +223,21 @@ export default function Home() {
                             <ul className='list-disc pl-4'>
                               <li>
                                 Cédula de identidad, certificado de votación,
-                                carnet de tipo de sangre (Foto o archivo de
+                                carnet de tipo de sangre (Foto o documento de
                                 original, emitido por Cruz Roja).
-                              </li>
-                              <li>
-                                Foto de original del carnet de tipo de sangre.
-                                (Emitido por Cruz Roja).
                               </li>
                               <li>
                                 Certificado de estudios, aprobado el primer año
                                 de bachillerato. (Sellado por el distrito de
                                 educación)
+                              </li>
+                              <li>
+                                Foto o documento de original del carnet de tipo
+                                de sangre. (Emitido por Cruz Roja).
+                              </li>
+                              <li>
+                                Exámenes psicosensométricos y psicológicos
+                                (Sindicato de choferes Santa Isabel)
                               </li>
                               <li>Certificado de salud (Emitido por MSP)</li>
                             </ul>
@@ -407,11 +411,15 @@ export default function Home() {
                                 Certificado de conductor emitido por la ANT.
                               </li>
                               <li>
-                                Original del carnet de tipo de sangre (Emitido
-                                por cruz roja) -
+                                Foto o documento de original del carnet de tipo
+                                de sangre (Emitido por cruz roja)
                               </li>
-                              <li>Exámenes pscicosensométricos -</li>
+                              <li>
+                                Exámenes pscicosensométricos y psicológicos
+                                (Sindicato de choferes Santa Isabel)
+                              </li>
                               <li>Certificado de salud (Emitido por MSP)</li>
+                              <li>Foto tamaño carnet actualizada</li>
                             </ul>
                           </label>
                           <div className='mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md'>
