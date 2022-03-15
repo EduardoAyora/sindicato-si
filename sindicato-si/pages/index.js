@@ -8,6 +8,8 @@ const styles = {
   display: 'flex',
 }
 
+const receiverMail = 'sindichofstaisabel@gmail.com'
+
 export default function Home() {
   const [cFiles, setCFiles] = useState([])
   const [cSendEnabled, setCSendEnabled] = useState(true)
@@ -305,8 +307,8 @@ export default function Home() {
 
                           Email.send({
                             SecureToken: '9ad5ea20-233e-400d-835d-d5df0e7a8486',
-                            To: 'eduardoaayora24@gmail.com',
-                            From: 'eduardoaayora24@gmail.com',
+                            To: receiverMail,
+                            From: receiverMail,
                             Subject:
                               'SOLICITUD DE INSCRIPCIÓN, Licencia tipo C',
                             Body: `Licencia tipo C, \n Nombre: ${cNameRef.current.value}, Celular: ${cCelRef.current.value}`,
@@ -481,8 +483,8 @@ export default function Home() {
 
                           Email.send({
                             SecureToken: '9ad5ea20-233e-400d-835d-d5df0e7a8486',
-                            To: 'eduardoaayora24@gmail.com',
-                            From: 'eduardoaayora24@gmail.com',
+                            To: receiverMail,
+                            From: receiverMail,
                             Subject:
                               'SOLICITUD DE INSCRIPCIÓN, Licencia tipo E',
                             Body: `Licencia tipo E, \n Nombre: ${eNameRef.current.value}, Celular: ${eCelRef.current.value}`,
