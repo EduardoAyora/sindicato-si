@@ -19,8 +19,10 @@ export default function Home() {
 
   const cNameRef = useRef()
   const cCelRef = useRef()
+  const cEmailRef = useRef()
   const eNameRef = useRef()
   const eCelRef = useRef()
+  const eEmailRef = useRef()
 
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -215,6 +217,17 @@ export default function Home() {
                           />
                         </div>
 
+                        <div className='col-span-6 sm:col-span-3'>
+                          <label className='block text-sm font-medium text-gray-700'>
+                            Email
+                          </label>
+                          <input
+                            ref={cEmailRef}
+                            type='text'
+                            className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                          />
+                        </div>
+
                         <div className='col-span-6 sm:col-span-6'>
                           <label className='block text-sm font-medium text-gray-700'>
                             <p className='font-bold'>
@@ -320,7 +333,7 @@ export default function Home() {
                             From: 'eduardoaayora24@gmail.com',
                             Subject:
                               'SOLICITUD DE INSCRIPCIÓN, Licencia tipo C',
-                            Body: `Licencia tipo C, \n Nombre: ${cNameRef.current.value}, Celular: ${cCelRef.current.value}`,
+                            Body: `Licencia tipo C, \n Nombre: ${cNameRef.current.value}, Celular: ${cCelRef.current.value}, Email: ${cEmailRef.current.value}`,
                             Attachments: mappedPdfsToSend,
                           })
                             .then((message) => {
@@ -331,6 +344,8 @@ export default function Home() {
                               setCFiles([])
                               cNameRef.current.value = ''
                               cCelRef.current.value = ''
+                              cEmailRef.current.value = ''
+                              setCSendEnabled(true)
                             })
                             .catch((err) => {
                               alert('Ha ocurrido el error: ' + err)
@@ -378,6 +393,17 @@ export default function Home() {
                           </label>
                           <input
                             ref={eCelRef}
+                            type='text'
+                            className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                          />
+                        </div>
+
+                        <div className='col-span-6 sm:col-span-3'>
+                          <label className='block text-sm font-medium text-gray-700'>
+                            Email
+                          </label>
+                          <input
+                            ref={eEmailRef}
                             type='text'
                             className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                           />
@@ -500,7 +526,7 @@ export default function Home() {
                             From: 'eduardoaayora24@gmail.com',
                             Subject:
                               'SOLICITUD DE INSCRIPCIÓN, Licencia tipo E',
-                            Body: `Licencia tipo E, \n Nombre: ${eNameRef.current.value}, Celular: ${eCelRef.current.value}`,
+                            Body: `Licencia tipo E, \n Nombre: ${eNameRef.current.value}, Celular: ${eCelRef.current.value}, Email: ${eEmailRef.current.value}`,
                             Attachments: mappedPdfsToSend,
                           })
                             .then((message) => {
@@ -511,6 +537,8 @@ export default function Home() {
                               setEFiles([])
                               eNameRef.current.value = ''
                               eCelRef.current.value = ''
+                              eEmailRef.current.value = ''
+                              setCSendEnabled(true)
                             })
                             .catch((err) => {
                               alert('Ha ocurrido el error: ' + err)
