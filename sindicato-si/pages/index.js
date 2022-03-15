@@ -10,6 +10,7 @@ const styles = {
 
 export default function Home() {
   const [cFiles, setCFiles] = useState([])
+  const [cSendEnabled, setCSendEnabled] = useState(true)
   const [eFiles, setEFiles] = useState([])
   const [isOpen, setIsOpen] = useState(false)
 
@@ -299,6 +300,7 @@ export default function Home() {
                               data,
                             })
                           }
+                          setCSendEnabled(false)
 
                           Email.send({
                             SecureToken: '9ad5ea20-233e-400d-835d-d5df0e7a8486',
@@ -316,11 +318,17 @@ export default function Home() {
                               cNameRef.current.value = ''
                               cCelRef.current.value = ''
                             })
-                            .catch((err) =>
+                            .catch((err) => {
                               alert('Ha ocurrido el error: ' + err)
-                            )
+                              setCSendEnabled(true)
+                            })
                         }}
-                        className='inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+                        disabled={!cSendEnabled}
+                        className={`${
+                          cSendEnabled
+                            ? 'bg-green-600 hover:bg-green-700 focus:ring-green-500'
+                            : 'bg-gray-600 hover:bg-gray-700 focus:ring-gray-500'
+                        } inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2`}
                       >
                         Enviar
                       </button>
