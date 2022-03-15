@@ -35,11 +35,10 @@ export default function Home() {
           name='description'
           content='Sindicato de choferes de Santa Isabel'
         />
-        <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <div>
-        <header className='bg-green-800' x-data='{ isOpen: false }'>
+        <header className='landing-wrapper' x-data='{ isOpen: false }'>
           <nav className='container px-6 py-4 mx-auto md:flex md:justify-between md:items-center'>
             <div className='flex items-center justify-between'>
               <a
@@ -105,7 +104,7 @@ export default function Home() {
                 <a
                   target='_blank'
                   rel='noreferrer'
-                  href='https://www.facebook.com/SindicatoDeChoferesDeSantaIsabel/about/?ref=page_internal'
+                  href='https://www.facebook.com/SindicatoDeChoferesDeSantaIsabel/?ref=page_internal'
                 >
                   @SindicatoDeChoferesDeSantaIsabel
                 </a>
@@ -163,7 +162,7 @@ export default function Home() {
                     <img
                       className='object-cover object-center w-full rounded-md shadow'
                       style={{ height: '500px' }}
-                      src='/images/sindicato-si.png'
+                      src='/images/sindicato-si.jpg'
                     />
                   </div>
                 </div>
@@ -315,7 +314,7 @@ export default function Home() {
                           })
                             .then((message) => {
                               alert(
-                                'Los datos para su inscripción se han enviado con éxito: ' +
+                                'Se ha enviado el formulario con los datos, la respuesta es: ' +
                                   message
                               )
                               setCFiles([])
@@ -491,7 +490,7 @@ export default function Home() {
                           })
                             .then((message) => {
                               alert(
-                                'Los datos para su inscripción se han enviado con éxito: ' +
+                                'Se ha enviado el formulario con los datos, la respuesta es: ' +
                                   message
                               )
                               setEFiles([])
