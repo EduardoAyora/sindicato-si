@@ -8,7 +8,8 @@ const styles = {
   display: 'flex',
 }
 
-const receiverMail = 'sindichofstaisabel@gmail.com'
+// const receiverMail = 'sindichofstaisabel@gmail.com'
+const receiverMail = 'eduardoaayora24@gmail.com'
 
 export default function Home() {
   const [cFiles, setCFiles] = useState([])
@@ -222,8 +223,12 @@ export default function Home() {
                             <ul className='list-disc pl-4'>
                               <li>
                                 Cédula de identidad, certificado de votación,
-                                carnet de tipo de sangre (Cruz Roja). (En .pdf
-                                .doc o .docx)
+                                carnet de tipo de sangre (Foto o archivo de
+                                original, emitido por Cruz Roja).
+                              </li>
+                              <li>
+                                Foto de original del carnet de tipo de sangre.
+                                (Emitido por Cruz Roja).
                               </li>
                               <li>
                                 Certificado de estudios, aprobado el primer año
@@ -238,7 +243,7 @@ export default function Home() {
                               <div className='flex justify-center text-sm text-gray-600'>
                                 <label>
                                   <input
-                                    accept='.pdf, .doc, .docx'
+                                    accept='.pdf, .doc, .docx, image/*'
                                     type='file'
                                     multiple
                                     onChange={(e) => {
@@ -260,7 +265,7 @@ export default function Home() {
                                 </label>
                               </div>
                               <p className='text-xs text-gray-500'>
-                                PDF, DOC, DOCX
+                                PDF, DOC, DOCX, Imágenes
                               </p>
 
                               <div style={styles}>
@@ -414,7 +419,7 @@ export default function Home() {
                               <div className='flex justify-center text-sm text-gray-600'>
                                 <label>
                                   <input
-                                    accept='.pdf, .doc, .docx'
+                                    accept='.pdf, .doc, .docx, image/*'
                                     type='file'
                                     multiple
                                     onChange={(e) => {
@@ -436,7 +441,7 @@ export default function Home() {
                                 </label>
                               </div>
                               <p className='text-xs text-gray-500'>
-                                PDF, DOC, DOCX
+                                PDF, DOC, DOCX, Imágenes
                               </p>
 
                               <div style={styles}>
